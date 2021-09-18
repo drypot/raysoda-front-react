@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from './Home'
+import About from './About'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <div className="flex justify-center mt-8">
-        <p className="text-4xl">Hello Vite + React!</p>
-      </div>
-    </div>
+    <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+        </Switch>
+    </Router>
   )
 }
-
-export default App
