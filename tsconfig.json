@@ -1,21 +1,32 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
     "module": "ESNext",
+
     "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "react",
-    // "sourceMap": true,
-    "allowJs": false,
-    "skipLibCheck": false,
+
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
+
+    "strict": true,
+    // "sourceMap": true,
+
+    "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true,
+
+    "useDefineForClassFields": true,
+    "jsx": "react",
+    "allowJs": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
+
+    // *.js 파일을 출력하지 않는다.
+    // TypeScript 는 타입채커로만 사용하고
+    // 실제 빌딩은 다른 툴을 사용한다.
+    // Vite 의 경우 vite build 를 쓴다.
     "noEmit": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
   },
   "include": ["./src"]
 }

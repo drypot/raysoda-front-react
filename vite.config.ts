@@ -3,9 +3,11 @@ import reactRefresh from '@vitejs/plugin-react-refresh'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: 'src',
   server: {
-    port: 3000,
+    // port: 3000,
+    // proxy: {
+    //   '/api': 'https://your-api-server.com',
+    // },
   },
   plugins: [reactRefresh()]
 })
