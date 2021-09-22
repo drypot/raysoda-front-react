@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
-let config = 'abc'
+import { config, pageTitle } from '../lib/config'
+import { currentUser } from '../user/user'
+import { Helmet } from 'react-helmet'
 
 const Home = () => {
 
-  useEffect(() => {
-    document.title = 'Home';
-  });
-
-  // @ts-ignore
   console.log(config)
+  console.log(currentUser)
 
   return (
     <div className="">
+      <Helmet>
+      </Helmet>
       <h1 className="dp-title">Home</h1>
       <div className="dp-text">
         <Link to="/about/site">About</Link><br/>

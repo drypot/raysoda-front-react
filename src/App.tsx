@@ -5,10 +5,20 @@ import AboutSite from './about/AboutSite'
 import ImageDetail from './image/ImageDetail'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
+import { Helmet } from 'react-helmet'
+import { config, pageTitle } from './lib/config'
 
 export default function App() {
+
   return (
-    <Router>
+    <div>
+      <Helmet>
+        <title>{ pageTitle() }</title>
+        <meta name="description" content={ config.appDesc }/>
+        <meta property="og:site_name" content={ config.appName }/>
+        <link rel="icon" type="image/png" href={ '/static/favicon/' + config.appNamel + '.png?v=1.0.1' }/>
+      </Helmet>
+      <Router>
         <Switch>
           <Route exact path="/">
             <Header/><Home/><Footer/>
@@ -21,7 +31,8 @@ export default function App() {
           </Route>
 
         </Switch>
-    </Router>
+      </Router>
+    </div>
   )
 }
 
