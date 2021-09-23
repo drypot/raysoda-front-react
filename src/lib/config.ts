@@ -10,7 +10,3 @@ export interface Config  {
 
 // @ts-ignore
 export const config: Config = _config
-
-export function pageTitle(title: string = '') {
-  return title.length ? `${title} - ${config.appName}` : config.appName
-}

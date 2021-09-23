@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { config, pageTitle } from '../lib/config'
+import { config } from '../lib/config'
 import { currentUser } from '../user/user'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 const Home = () => {
 

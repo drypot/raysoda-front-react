@@ -1,20 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { pageTitle } from '../lib/config'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
-const AboutSite = () => {
+export default function AboutSite() {
   return (
-    <div className="">
+    <div className="c-column">
       <Helmet>
-        <title>{ pageTitle('About') }</title>
+        <title>About</title>
       </Helmet>
-      <h1 className="dp-title">About</h1>
-      <div className="dp-text">
-        <Link to="/">Home</Link>
+      <h1 className="c-title">About</h1>
+      <div className="c-text">
+        사진 갤러리입니다.<br/>
+        업로드된 사진은 2048x2048 크기로 리사이즈됩니다.<br/>
+        사진은 18시간마다 등록하실 수 있습니다.<br/>
       </div>
     </div>
   )
 }
-
-export default AboutSite

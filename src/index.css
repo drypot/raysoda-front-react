@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.dp-title {
-  @apply text-4xl mt-8 ml-4
+.c-column {
+  @apply max-w-prose mx-auto text-center
 }
 
-.dp-text {
-  @apply mt-4 ml-4
+.c-title {
+  @apply mt-20 mb-16 text-4xl
+}
+
+.c-text {
+  @apply leading-8
+}
+
+.c-link {
+  @apply text-blue-500 hover:underline
+}
+
+.m-big {
+  @apply mt-16
+}
+
+.m-sub {
+  @apply mt-10
+}
+
+.m-mini {
+  @apply mt-6
 }
