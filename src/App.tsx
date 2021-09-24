@@ -1,41 +1,41 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './home/Home'
-import AboutSite from './about/AboutSite'
-import ImageDetail from './image/ImageDetail'
-import Header from './layout/Header'
-import Footer from './layout/Footer'
+import About from './home/About'
+import { ImageDetail } from './image/ImageDetail'
+import { Header } from './layout/Header'
+import { Footer } from './layout/Footer'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { config } from './lib/config'
-import AboutAd from './about/AboutAd'
-import AboutCompany from './about/AboutCompany'
-import AboutPrivacy from './about/AboutPrivacy'
-import AboutHelp from './about/AboutHelp'
+import Ad from './home/Ad'
+import Company from './home/Company'
+import Privacy from './home/Privacy'
+import Help from './home/Help'
 
 export default function App() {
 
   return (
     <HelmetProvider>
-    <div>
-      <Helmet defaultTitle={config.appName} titleTemplate={ "%s - " + config.appName }>
-        <meta name="description" content={ config.appDesc }/>
-        <meta property="og:site_name" content={ config.appName }/>
-        <link rel="icon" type="image/png" href={ '/static/favicon/' + config.appNamel + '.png?v=1.0.1' }/>
-      </Helmet>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Header/><Home/><Footer/>
-          </Route>
-          <Route path="/image/:id">
-            <ImageDetail/>
-          </Route>
-          <Route path="*">
-            <NormalPage/>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+      <div>
+        <Helmet defaultTitle={config.appName} titleTemplate={'%s - ' + config.appName}>
+          <meta name="description" content={config.appDesc}/>
+          <meta property="og:site_name" content={config.appName}/>
+          <link rel="icon" type="image/png" href={'/static/favicon/' + config.appNamel + '.png?v=1.0.1'}/>
+        </Helmet>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home/><Footer/>
+            </Route>
+            <Route path="/image/:id">
+              <ImageDetail/>
+            </Route>
+            <Route path="*">
+              <NormalPage/>
+            </Route>
+          </Switch>
+        </Router>
+      </div>
     </HelmetProvider>
   )
 }
@@ -45,23 +45,18 @@ function NormalPage() {
     <div>
       <Header/>
       <Switch>
-        <Route path="/about/site"><AboutSite/></Route>
-        <Route path="/about/company"><AboutCompany/></Route>
-        <Route path="/about/ad"><AboutAd/></Route>
-        <Route path="/about/privacy"><AboutPrivacy/></Route>
-        <Route path="/about/help"><AboutHelp/></Route>
+        <Route path="/about"><About/></Route>
+        <Route path="/company"><Company/></Route>
+        <Route path="/ad"><Ad/></Route>
+        <Route path="/privacy"><Privacy/></Route>
+        <Route path="/help"><Help/></Route>
       </Switch>
       <Footer/>
     </div>
   )
 }
-// /support/banner
 
-// /about/site
-// /about/company
-// /about/ad
-// /about/privacy
-// /about/help
+// /support/banner
 
 // /support/counter
 

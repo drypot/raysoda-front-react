@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-const ImageDetail = () => {
+export function ImageDetail() {
   const { id } = useParams<{ id: string}>()
 
   return (
@@ -13,5 +13,3 @@ const ImageDetail = () => {
     </div>
   )
 }
-
-export default ImageDetail

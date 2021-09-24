@@ -2,15 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { config } from '../lib/config'
 
-const Header = () => {
+export function Header() {
   return (
-    <div className="c-column border-b">
-      <div className="my-4 text-xl leading-none">
+    <div className="column border-b link-no-deco">
+      <h3 className="my-4 leading-none">
         <Link to="/">{config.appName}</Link>
-      </div>
+      </h3>
     </div>
   )
 }
-
-export default Header
-

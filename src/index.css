@@ -2,30 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-.c-column {
+@layer utilities {
+
+  .mt-ultra {
+    @apply mt-20
+  }
+
+  .mt-big {
+    @apply mt-16
+  }
+
+  .mt-large {
+    @apply mt-10
+  }
+
+  .mt-normal {
+    @apply mt-8
+  }
+
+  .mt-small {
+    @apply mt-6
+  }
+
+}
+
+html {
+  @apply text-base lg:text-lg xl:text-xl 2xl:text-2xl
+}
+
+body {
+  @apply font-serif text-gray-800
+}
+
+.column {
   @apply max-w-prose mx-auto text-center
 }
 
-.c-title {
-  @apply mt-20 mb-16 text-4xl
+h1 {
+  @apply mt-ultra text-4xl
 }
 
-.c-text {
-  @apply leading-8
+h2 {
+  @apply mt-big text-2xl
 }
 
-.c-link {
+h3 {
+  @apply mt-normal text-xl
+}
+
+p {
+  @apply mt-normal leading-8
+}
+
+a {
   @apply text-blue-500 hover:underline
 }
 
-.m-big {
-  @apply mt-16
-}
-
-.m-sub {
-  @apply mt-10
-}
-
-.m-mini {
-  @apply mt-6
+.link-no-deco a, a.link-no-deco  {
+  @apply text-gray-800 hover:no-underline
 }
