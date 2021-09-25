@@ -62,6 +62,10 @@ a {
   @apply text-blue-500 hover:underline
 }
 
+.link {
+  @apply text-blue-500 hover:underline
+}
+
 .link-no-deco a, a.link-no-deco  {
   @apply text-gray-800 hover:no-underline
 }
