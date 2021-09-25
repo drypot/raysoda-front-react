@@ -1,34 +1,33 @@
 import React, { Fragment } from 'react'
-import { config } from '../lib/config'
 import { currentUser } from '../user/user'
 import { Link } from 'react-router-dom'
 import { bannerList } from '../banner/banner'
-import { ImageList } from '../image/ImageList'
+import { config } from '../lib/config'
+import { ImageListComponent } from '../image/ImageList'
 
 export default function Home() {
   return (
-    <div>
+    <Fragment>
       <div className="column">
         <h1><Link to="/" className="link-no-deco">{config.appName}</Link></h1>
-        <Menu/>
-        <Banner/>
+        <HomeMenu/>
+        <HomeBanner/>
       </div>
-      <ImageList/>
-    </div>
+      <ImageListComponent/>
+    </Fragment>
   )
 }
 
-function Menu() {
-  const user = currentUser
+function HomeMenu() {
   return (
     <div className="mt-big flex justify-center space-x-3">
-      {user ?
+      {currentUser ?
         <Fragment>
           <Link to="/about">사이트소개</Link>
           <Link to="/upload-image">사진등록</Link>
-          <Link to={'/' + encodeURIComponent(user.home)}>내사진</Link>
+          <Link to={'/' + encodeURIComponent(currentUser.home)}>내사진</Link>
           <Link to="/user-list">회원목록</Link>
-          <Link to="/image-list-year">연도별사진</Link>
+          <Link to="/image-list-by-year">연도별사진</Link>
           <Link to="/logout">접속종료</Link>)
         </Fragment>
         :
@@ -37,14 +36,14 @@ function Menu() {
           <Link to="/login">로그인</Link>
           <Link to="/register">회원가입</Link>
           <Link to="/user-list">회원목록</Link>
-          <Link to="/image-list-year">연도별사진</Link>
+          <Link to="/image-list-by-year">연도별사진</Link>
         </Fragment>
       }
     </div>
   )
 }
 
-function Banner() {
+function HomeBanner() {
   if (bannerList.length) {
     return (
       <div className="mt-large flex flex-col">

@@ -11,6 +11,7 @@ import Ad from './home/Ad'
 import Company from './home/Company'
 import Privacy from './home/Privacy'
 import Help from './home/Help'
+import ImageList from './image/ImageList'
 
 export default function App() {
 
@@ -26,6 +27,9 @@ export default function App() {
           <Switch>
             <Route exact path="/">
               <Home/><Footer/>
+            </Route>
+            <Route exact path="/image-list">
+              <ImageList/><Footer/>
             </Route>
             <Route path="/image/:id">
               <ImageDetail/>
