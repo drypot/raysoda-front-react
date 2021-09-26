@@ -1,12 +1,12 @@
 import React, { Fragment, MouseEventHandler, useEffect, useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { config } from '../lib/config'
-import { limitNumber2 } from '../lib/primitive'
-import { UrlMaker } from '../lib/url2'
+import { config } from '../entity/config'
+import { limitNumber2 } from '../lib/base/primitive'
+import { UrlMaker } from '../lib/base/url2'
 import { ImageListItem } from '../entity/image'
 
-export default function ImageList() {
+export default function ImageListPage() {
   return (
     <Fragment>
       <div className="column">
@@ -69,9 +69,11 @@ export function ImageListComponent() {
 
   return (
     <Fragment>
+      {list.length &&
       <Helmet>
-        {list.length && <meta property="og:image" content={list[0].thumbUrl || ''}/>}
+        <meta property="og:image" content={list[0].thumbUrl || ''}/>
       </Helmet>
+      }
       <div className="mt-image-thumb max-w-full text-center">
         {list.length == 0 && <p>마지막 페이지입니다.</p>}
         {list.map(image =>

@@ -69,3 +69,15 @@ a {
 .link-no-deco a, a.link-no-deco  {
   @apply text-gray-800 hover:no-underline
 }
+
+.btn {
+  @apply bg-gray-400 text-white font-bold py-1 px-4 rounded
+}
+
+.btn-hover-green {
+  @apply hover:bg-green-400
+}
+
+.btn-hover-red {
+  @apply hover:bg-red-400
+}
