@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { config } from '../lib/config'
+import { config } from '../entity/config'
 
 export function Header() {
   return (

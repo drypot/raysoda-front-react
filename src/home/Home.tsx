@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import { currentUser } from '../user/user'
+import { user } from '../entity/session-user'
 import { Link } from 'react-router-dom'
 import { bannerList } from '../banner/banner'
-import { config } from '../lib/config'
+import { config } from '../entity/config'
 import { ImageListComponent } from '../image/ImageList'
 
 export default function Home() {
@@ -21,11 +21,11 @@ export default function Home() {
 function HomeMenu() {
   return (
     <div className="mt-big flex justify-center space-x-3">
-      {currentUser ?
+      {user ?
         <Fragment>
           <Link to="/about">사이트소개</Link>
           <Link to="/upload-image">사진등록</Link>
-          <Link to={'/' + encodeURIComponent(currentUser.home)}>내사진</Link>
+          <Link to={'/' + encodeURIComponent(user.home)}>내사진</Link>
           <Link to="/user-list">회원목록</Link>
           <Link to="/image-list-by-year">연도별사진</Link>
           <Link to="/logout">접속종료</Link>)

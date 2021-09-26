@@ -1,5 +1,5 @@
 import React from 'react'
-import { config } from '../lib/config'
+import { config } from '../entity/config'
 import { Helmet } from 'react-helmet-async'
 
 export default function Ad() {
