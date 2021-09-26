@@ -4,18 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { config } from '../lib/config'
 import { limitNumber2 } from '../lib/primitive'
 import { UrlMaker } from '../lib/url2'
-
-export interface ImageHead {
-  id: number
-  owner: {
-    id: number
-    name: string
-    home: string
-  }
-  cdateStr: string
-  comment: string
-  thumbUrl: string
-}
+import { ImageListItem } from '../entity/image'
 
 export default function ImageList() {
   return (
@@ -28,28 +17,41 @@ export default function ImageList() {
   )
 }
 
+function PrevArrow() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+         className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
+    </svg>
+  )
+}
+
+function NextArrow() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+         className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+    </svg>
+  )
+}
+
 export function ImageListComponent() {
   const history = useHistory()
   const query = new URLSearchParams(useLocation().search)
   const [page, setPage] = useState(limitNumber2(query.get('p'), 1, 1, NaN))
   const [pageSize, setPageSize] = useState(limitNumber2(query.get('ps'), 16, 1, 128))
   const [date, setDate] = useState(query.get('d'))
-  const [list, setList] = useState<ImageHead[]>([])
-  const [prevUrl, setPrevUrl] = useState('')
-  const [nextUrl, setNextUrl] = useState('')
-
-  // setVar 할 때마다 렌더링하는 문제를 확인. 정상인가. 옵티마이징할 수 있는가.
+  const [list, setList] = useState<ImageListItem[]>([])
+  const prevUrl = page > 1 ? UrlMaker.from('/image-list')
+    .add('d', date).add('p', page - 1, 1).add('ps', pageSize, 16).gen() : ''
+  const nextUrl = list.length === pageSize ? UrlMaker.from('/image-list')
+    .add('d', date).add('p', page + 1).add('ps', pageSize, 16).gen() : ''
 
   useEffect(() => {
     fetch(`/api/image?p=${page}&ps=${pageSize}&d=${date ?? ''}`)
       .then(res => res.json())
       .then(body => {
-        const list: ImageHead[] = body.list ?? []
-        setList(list)
-        setPrevUrl(page > 1 ? UrlMaker.from('/image-list')
-          .add('d', date).add('p', page - 1, 1).add('ps', pageSize, 16).gen() : '')
-        setNextUrl(list.length === pageSize ? UrlMaker.from('/image-list')
-          .add('d', date).add('p', page + 1).add('ps', pageSize, 16).gen() : '')
+        setList(body.list ?? [])
       })
   }, [page, pageSize, date])
 
@@ -88,22 +90,8 @@ export function ImageListComponent() {
           </div>
         )}
         <div className="mt-image-thumb flex justify-center">
-          {prevUrl.length > 0 &&
-          <a href={prevUrl} onClick={onClickPrev} className="mr-12">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
-            </svg>
-          </a>
-          }
-          {nextUrl.length > 0 &&
-          <a href={nextUrl} onClick={onClickNext}>
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
-          }
+          {prevUrl.length > 0 && <a href={prevUrl} onClick={onClickPrev} className="mr-12"><PrevArrow/></a>}
+          {nextUrl.length > 0 && <a href={nextUrl} onClick={onClickNext}><NextArrow/></a>}
         </div>
         <div className="mt-image-thumb flex justify-center space-x-6">
           <a href="https://raysoda.com">RaySoda</a>
