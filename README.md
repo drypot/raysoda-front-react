@@ -8,7 +8,7 @@ RaySoda front React version.
 
 ## History
 
-2021.09.18 React 버전 작업 시작.\
+2021.09.18 React 버전 실험 시작.
 2021.08.01 Backend 에서 Front 분리.
 
 ## License
