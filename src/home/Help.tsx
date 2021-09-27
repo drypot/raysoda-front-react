@@ -14,13 +14,13 @@ export default function Help() {
           궁금하신 점은 이메일로 문의 부탁드립니다.
         </p>
         <p>
-          페이스북 : &nbsp;
-          <a href="https://www.facebook.com/raysoda.news" target="_blank">
-            https://www.facebook.com/raysoda.news
-          </a><br/>
           이메일 : &nbsp;
           <a href="mailto:support+raysoda@raysoda.com">
             support+raysoda@raysoda.com
+          </a><br/>
+          페이스북 : &nbsp;
+          <a href="https://www.facebook.com/raysoda.news" target="_blank">
+            https://www.facebook.com/raysoda.news
           </a><br/>
         </p>
         <p>

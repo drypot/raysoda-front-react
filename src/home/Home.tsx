@@ -28,7 +28,7 @@ function HomeMenu() {
           <Link to={'/' + encodeURIComponent(user.home)}>내사진</Link>
           <Link to="/user-list">회원목록</Link>
           <Link to="/image-list-by-year">연도별사진</Link>
-          <Link to="/logout">접속종료</Link>)
+          <Link to="/logout">접속종료</Link>
         </Fragment>
         :
         <Fragment>

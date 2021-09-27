@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { config } from '../entity/config'
 
 export function Footer() {
   return (
@@ -13,7 +14,7 @@ export function Footer() {
       </div>
       <div className="my-4 leading-none"><a href="/api/counters/adng/inc?r=http://www.natgeokorea.com/magazine" target="_blank">National
         Geographic</a></div>
-      <h3 className="my-4 leading-none"><Link to="/">RaySoda</Link></h3>
+      <h3 className="my-4 leading-none"><Link to="/">{config.appName}</Link></h3>
     </div>
   )
 }
