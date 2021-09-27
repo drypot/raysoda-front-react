@@ -1,6 +1,5 @@
 import React, { Fragment, MouseEventHandler, useEffect, useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { config } from '../entity/config'
 import { limitNumber2 } from '../lib/base/primitive'
 import { UrlMaker } from '../lib/base/url2'
@@ -14,24 +13,6 @@ export default function ImageListPage() {
       </div>
       <ImageListComponent/>
     </Fragment>
-  )
-}
-
-function PrevArrow() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg"
-         className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
-    </svg>
-  )
-}
-
-function NextArrow() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg"
-         className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-    </svg>
   )
 }
 
@@ -52,6 +33,7 @@ export function ImageListComponent() {
       .then(res => res.json())
       .then(body => {
         setList(body.list ?? [])
+        window.scrollTo(0, 0)
       })
   }, [page, pageSize, date])
 
@@ -69,13 +51,7 @@ export function ImageListComponent() {
 
   return (
     <Fragment>
-      {list.length &&
-      <Helmet>
-        <meta property="og:image" content={list[0].thumbUrl || ''}/>
-      </Helmet>
-      }
       <div className="mt-image-thumb max-w-full text-center">
-        {list.length == 0 && <p>마지막 페이지입니다.</p>}
         {list.map(image =>
           <div className="mt-image-thumb first:mt-0 link-no-deco" key={image.id}>
             {/* 이미지 좌상단에 FullScreen 아이콘을 넣기 위해 inline-block 을 한다. */}
@@ -92,8 +68,22 @@ export function ImageListComponent() {
           </div>
         )}
         <div className="mt-image-thumb flex justify-center">
-          {prevUrl.length > 0 && <a href={prevUrl} onClick={onClickPrev} className="mr-12"><PrevArrow/></a>}
-          {nextUrl.length > 0 && <a href={nextUrl} onClick={onClickNext}><NextArrow/></a>}
+          {prevUrl.length > 0 &&
+          <a href={prevUrl} onClick={onClickPrev} className="mr-12">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
+            </svg>
+          </a>
+          }
+          {nextUrl.length > 0 &&
+          <a href={nextUrl} onClick={onClickNext}>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+          }
         </div>
         <div className="mt-image-thumb flex justify-center space-x-6">
           <a href="https://raysoda.com">RaySoda</a>
